@@ -138,6 +138,8 @@
     }
     const waLinks=document.querySelectorAll('[data-wa-link]');
     if(WHATSAPP_NUMBER){waLinks.forEach(a=>{a.href=`https://wa.me/${WHATSAPP_NUMBER}`;a.target='_blank';a.rel='noopener noreferrer';a.textContent=a.classList.contains('wa-float')?'Fale conosco':'Chamar no WhatsApp'})}
+    const waFloat=document.querySelector('.wa-float');
+    if(waFloat&&WHATSAPP_NUMBER){const greeting='Olá! Vim pelo site da LF Esquadria e gostaria de solicitar um orçamento.';waFloat.href=`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(greeting)}`}
     document.getElementById('quoteForm').addEventListener('submit',e=>{e.preventDefault();if(!WHATSAPP_NUMBER){alert('O WhatsApp da empresa ainda não foi configurado. Entre em contato diretamente com a LF Esquadria.');return}const d=new FormData(e.currentTarget);const msg=`Olá! Gostaria de solicitar um orçamento.\n\nNome: ${d.get('name')}\nTelefone: ${d.get('phone')}\nServiço: ${d.get('service')||'Não informado'}\nCidade/bairro: ${d.get('city')||'Não informado'}\nProjeto: ${d.get('message')||'Sem detalhes adicionais.'}`;window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`,'_blank','noopener,noreferrer')});
   </script>
   <script>
